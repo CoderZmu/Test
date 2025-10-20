@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SearchBar } from 'antd-mobile';
 import './styles.scss';
 import botfatherAvatar from '@/assets/images/botfather-avatar.png';
 
@@ -89,21 +90,20 @@ const Home: React.FC = () => {
         </section>
 
         {/* 搜索表单 */}
-        <form action="/" className="tm-section tm-main-search-form">
-          <div className="icon-before icon-search tm-field tm-search-field js-main-search-field">
-            <input 
-              type="search" 
-              className="form-control tm-input tm-search-input" 
-              name="query" 
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Search" 
-              autoComplete="off" 
-              spellCheck="false"
-            />
-            <span className="icon-before icon-search-clear tm-search-clear js-form-clear"></span>
-          </div>
-        </form>
+        <div className="tm-section tm-main-search-form">
+          <SearchBar
+            placeholder="Search"
+            value={searchValue}
+            onChange={setSearchValue}
+            onClear={() => setSearchValue('')}
+            style={{
+              '--border-radius': '12px',
+              '--background': '#f4f4f5',
+              '--height': '36px',
+              '--padding-left': '12px',
+            }}
+          />
+        </div>
 
         {/* 机器人列表区域 */}
         <section className="tm-section">

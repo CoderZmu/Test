@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SearchBar } from 'antd-mobile';
 import './styles.scss';
+import { AddCircleOutline } from 'antd-mobile-icons';
 import botfatherAvatar from '@/assets/images/botfather-avatar.png';
 
 // 机器人数据类型
@@ -117,7 +118,9 @@ const Home: React.FC = () => {
               e.preventDefault();
               handleCreateBot();
             }}>
-              <span className="tm-icon"></span>
+              <div className="icon-container">
+                <AddCircleOutline fontSize={20} />
+              </div>
               <span>Create a New Bot</span>
             </a>
 

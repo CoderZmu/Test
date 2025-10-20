@@ -5,6 +5,20 @@
 // Home 页面特有样式
 // ============================================
 
+// 创建新机器人按钮的图标容器
+.tm-row-add {
+  .icon-container {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
 // 搜索区域
 .tm-main-search-form {
   padding: 0 16px;

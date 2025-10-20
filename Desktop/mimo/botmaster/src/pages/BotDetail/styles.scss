@@ -1,0 +1,391 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+// ============================================
+// 机器人详情页面样式
+// ============================================
+
+.bot-detail {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0; // 参考 .tm-main 无额外内边距
+  background: $bg-primary;
+
+  // ============================================
+  // 机器人信息区域
+  // ============================================
+  &__intro {
+    text-align: center;
+    padding: 21px 12px; // 参考 .tm-main-intro
+    margin-bottom: $spacing-md;
+  }
+
+  &__name {
+    font-size: 22px; // 参考 .tm-main-intro-header
+    line-height: 30px;
+    font-weight: 600;
+    color: $text-header;
+    margin: $spacing-sm 0 $spacing-xs;
+  }
+
+  &__username {
+    color: $primary-color;
+    text-decoration: none;
+    font-size: 13px; // 参考 .tm-main-intro-text
+    line-height: 17px;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $primary-dark;
+      text-decoration: underline;
+    }
+  }
+
+  // ============================================
+  // Section 通用样式
+  // ============================================
+  &__section {
+    margin-bottom: $spacing-lg;
+  }
+
+  &__section-title {
+    font-size: 18px;
+    line-height: 28px; // 参考 .tm-section-header-text
+    font-weight: bold;
+    color: $text-header;
+    margin: 0 0 14px;
+    padding: 0 13px;
+  }
+
+  // ============================================
+  // API Token 卡片 - 使用 antd-mobile Card
+  // ============================================
+  &__token-card {
+    margin-bottom: $spacing-sm;
+    border: 1px solid $border-color;
+    box-shadow: $shadow-sm;
+
+    // 覆盖 antd-mobile Card 的默认样式
+    :global {
+      .adm-card-body {
+        padding: 14px; // 参考 .tm-api-token-wrap
+      }
+    }
+  }
+
+  &__token-display {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: 12px; // 参考 .tm-api-token
+    background: $bg-secondary;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: background $transition-fast;
+    min-height: 44px;
+
+    &:hover {
+      background: darken($bg-secondary, 3%);
+    }
+  }
+
+  &__token-text {
+    flex: 1;
+    font-family: 'Menlo', 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    color: $text-primary;
+    word-break: break-all;
+    line-height: 1.5;
+    user-select: text;
+  }
+
+  &__token-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  &__action-button {
+    flex: 1;
+    height: auto;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 12px 15px;
+
+    @media (min-width: 768px) {
+      font-size: 15px;
+      padding: 14px 20px;
+    }
+  }
+
+  // ============================================
+  // 帮助文本
+  // ============================================
+  &__help-text {
+    font-size: 13px;
+    line-height: 17px; // 参考 p.help-text
+    color: $text-secondary;
+    margin: 8px 14px 0;
+    padding: 0;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: $primary-dark;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // ============================================
+  // 底部文本
+  // ============================================
+  &__footer-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: $text-secondary;
+    text-align: center;
+    margin: 0;
+    padding: 0 $spacing-md;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // ============================================
+  // List Item 自定义样式
+  // ============================================
+  &__list-item {
+    padding: 9px 14px !important; // 参考 .tm-row 精确间距
+    font-size: 14px !important; // 参考 .tm-row 字体大小
+    font-weight: normal !important;
+    color: $text-primary !important;
+    transition: background $transition-fast;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $border-color;
+    }
+
+    &:active {
+      background: $bg-hover;
+    }
+
+    // 前缀图标样式
+    .adm-list-item-content-prefix {
+      font-size: 20px;
+      margin-right: $spacing-sm;
+      color: $text-secondary;
+    }
+
+    // 箭头样式
+    .adm-list-item-content-arrow {
+      color: $text-disabled;
+    }
+
+    // 危险操作样式
+    &--destructive {
+      color: #F88277 !important; // 参考 .tm-row-destructive
+    }
+  }
+
+  // ============================================
+  // antd-mobile 组件样式覆盖
+  // ============================================
+
+  // List 组件样式
+  :global {
+    .adm-list {
+      border-radius: $radius-lg;
+      overflow: hidden;
+      border: 1px solid $border-color;
+      box-shadow: $shadow-sm;
+      background: $bg-primary;
+    }
+
+    // Button 组件样式（在 Space 中使用）
+    .adm-space {
+      width: 100%;
+      gap: 12px !important;
+
+      .adm-button {
+        flex: 1;
+        font-weight: bold;
+        border-radius: 8px;
+        height: auto;
+        font-size: 13px;
+        padding: 12px 15px;
+        line-height: 18px;
+        box-shadow: none;
+        border: none;
+        
+        @media (min-width: 768px) {
+          font-size: 15px;
+          padding: 14px 20px;
+        }
+        
+        &.adm-button-primary {
+          background: #1890ff;
+          
+          &:active {
+            background: #0076e4;
+          }
+        }
+        
+        &.adm-button-danger {
+          background: #ff4d4f;
+          
+          &:active {
+            background: #d93436;
+          }
+        }
+      }
+    }
+
+    // Image 组件
+    .adm-image {
+      box-shadow: $shadow-md;
+    }
+
+    // Divider 组件
+    .adm-divider {
+      border-color: $border-color;
+    }
+  }
+
+}
+
+// ============================================
+// 局部复刻 Bot Token 卡片样式（不依赖 botfather11.css）
+// 作用域：仅在该详情页中使用到的类名
+// ============================================
+
+.tm-section {
+  .tm-api-token-wrap {
+    width: 100%;
+    padding: 14px;
+    background: $bg-secondary; // 浅色背景
+    border: none; // 去描边
+    border-radius: 6px;
+  }
+
+  .tm-api-token {
+    display: flex;
+    align-items: center;
+    background: $bg-primary; // 内部使用白底，增强层次
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: $text-primary;
+    word-break: break-all;
+  }
+
+  .tm-api-token-actions {
+    display: flex;
+    justify-content: stretch;
+    gap: 10px;
+  }
+
+  .tm-active-button,
+  .tm-revoke-button {
+    flex: 1 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .tm-active-button {
+    background: #1890ff; // 参考项目主色
+    color: #fff;
+
+    &:hover { background: #0076e4; }
+    &:active { transform: translateY(0.5px); }
+  }
+
+  .tm-revoke-button {
+    background: #ff4d4f; // 危险操作色
+    color: #fff;
+
+    &:hover { background: #d93436; }
+    &:active { transform: translateY(0.5px); }
+  }
+
+  // 文案辅助样式（局部）
+  .help-text.link-chevrons {
+    font-size: 13px;
+    line-height: 19px;
+    margin: 8px 14px 0;
+    color: $text-secondary;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+      &:hover { text-decoration: underline; }
+    }
+  }
+}
+
+// ============================================
+// 全局样式调整（确保白底黑字主题）
+// ============================================
+#aj_content {
+  background: $bg-primary;
+}
+
+
+// 确保 Dialog 和 Toast 样式正常
+:global {
+  // Dialog 组件
+  .adm-center-popup-wrap {
+    .adm-dialog {
+      .adm-dialog-content {
+        font-size: 15px;
+        color: $text-primary;
+        padding: $spacing-lg;
+      }
+
+      .adm-dialog-footer {
+        .adm-dialog-action-row {
+          .adm-button {
+            font-weight: bold;
+
+            &.adm-button-default {
+              color: $text-secondary;
+            }
+
+            &.adm-button-primary {
+              color: $primary-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Toast 组件
+  .adm-toast {
+    .adm-toast-main {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      border-radius: $radius-lg;
+      padding: $spacing-md $spacing-lg;
+      font-size: 14px;
+    }
+  }
+}

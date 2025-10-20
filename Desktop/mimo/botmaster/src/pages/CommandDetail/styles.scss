@@ -1,0 +1,426 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+// 黑白配色变量
+$bg-primary: #ffffff;
+$bg-secondary: #f5f5f5;
+$bg-hover: #e8e8e8;
+$text-primary: #000000;
+$text-secondary: #666666;
+$text-tertiary: #999999;
+$border-color: #e0e0e0;
+$accent-color: #000000;
+
+// 主容器
+#aj_content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: $bg-primary;
+  padding-top: 12px;
+}
+
+.tm-main {
+  margin: 0 auto;
+  width: 480px;
+  max-width: 100%;
+  padding-bottom: 12px;
+  flex-grow: 1;
+}
+
+// 顶部介绍区域
+.tm-main-intro {
+  text-align: center;
+  padding: 21px 12px;
+
+  .tm-main-intro-picture {
+    width: 64px;
+    height: 64px;
+    margin: 12px auto 30px;
+    background-color: $accent-color;
+  }
+
+  .tm-main-intro-header {
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: bold;
+    color: $text-primary;
+    margin: 0;
+    max-width: 80vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tm-main-intro-text {
+    font-size: 13px;
+    line-height: 17px;
+    margin: 4px auto 0;
+    color: $text-secondary;
+
+    a {
+      color: $accent-color;
+      text-decoration: none;
+      white-space: nowrap;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 17px;
+        margin-left: 2px;
+        background: url("data:image/svg+xml,%3Csvg height='17' viewBox='0 0 6 17' width='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m 1 6 l 3.5 3.5 c 0.15 0.15 0.15 0.4 0 0.55 l -3.5 3.5' fill='none' stroke='%23000' stroke-linecap='round' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center;
+      }
+    }
+  }
+}
+
+// 区块样式
+.tm-section {
+  padding: 0 16px 12px;
+
+  .tm-section-header {
+    display: flex;
+    align-items: center;
+    padding: 9px 12px;
+    width: 100%;
+    gap: 10px;
+    position: relative;
+
+    .tm-section-header-text {
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: bold;
+      color: $text-primary;
+      margin: 0;
+      padding: 0;
+    }
+
+    .grow-1 {
+      flex-grow: 1;
+    }
+
+    .tm-section-action {
+      color: $accent-color;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 28px;
+      cursor: pointer;
+      user-select: none;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+// 语言下拉按钮
+.tm-lang-dropdown-btn {
+  display: flex;
+  padding: 5px 10px 6px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 6px;
+  background: $bg-secondary;
+  color: $text-primary;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+
+  &::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23000'%3E%3Cpath d='M8 2c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6zm0 1c-1.11 0-2.08.36-2.86.97.24.62.53 1.25.87 1.87.34-.08.69-.13 1.05-.13s.71.05 1.05.13c.34-.62.63-1.25.87-1.87A4.95 4.95 0 008 3zm0 9c1.11 0 2.08-.36 2.86-.97-.24-.62-.53-1.25-.87-1.87-.34.08-.69.13-1.05.13s-.71-.05-1.05-.13c-.34.62-.63 1.25-.87 1.87.78.61 1.75.97 2.86.97z'/%3E%3C/svg%3E") no-repeat center;
+  }
+
+  &::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: url("data:image/svg+xml,%3Csvg height='10' viewBox='0 0 10 10' width='10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m1 3.5 3.5 3.5c.15.15.4.15.55 0l3.5-3.5' fill='none' stroke='%23000' stroke-linecap='round' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center;
+    background-size: 100%;
+  }
+
+  &:hover {
+    background: $bg-hover;
+  }
+}
+
+// 下拉菜单
+.tm-dropdown {
+  position: relative;
+
+  .dropdown-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 89;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    margin: 6px 0;
+    z-index: 90;
+    padding: 0;
+    background: $bg-primary;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    border: 1px solid $border-color;
+    overflow: hidden;
+    min-width: 160px;
+    max-height: 234px;
+    overflow-y: auto;
+
+    li {
+      list-style: none;
+
+      &.selected .dropdown-menu-item {
+        font-weight: 600;
+        
+        &::after {
+          content: '✓';
+          position: absolute;
+          right: 14px;
+          color: $accent-color;
+        }
+      }
+
+      .dropdown-menu-item {
+        display: block;
+        position: relative;
+        padding: 8px 40px 8px 14px;
+        line-height: 20px;
+        color: $text-primary;
+        white-space: nowrap;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+
+        &:hover {
+          background: $bg-hover;
+        }
+
+        &.tm-lang-add {
+          color: $accent-color;
+          border-bottom: 1px solid $border-color;
+        }
+      }
+    }
+  }
+}
+
+// 表格容器
+.tm-table-wrap {
+  border-radius: 8px;
+  margin-bottom: 0;
+  border: none;
+  overflow: hidden;
+  width: 100%;
+}
+
+.tm-menu-items {
+  // 基础样式
+}
+
+// 行样式
+.tm-row {
+  display: flex;
+  width: 100%;
+  padding: 9px 14px;
+  padding-right: 24px;
+  background: $bg-secondary;
+  margin-bottom: 1px;
+  position: relative;
+  gap: 8px;
+  cursor: pointer;
+  min-height: 42px;
+  align-items: center;
+  color: $text-primary;
+  text-decoration: none;
+  font-size: 14px;
+
+  &:hover {
+    background: $bg-hover;
+  }
+
+  &.tm-row-add {
+    color: $accent-color;
+    font-weight: 600;
+  }
+
+  &.tm-row-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 12px;
+    bottom: 0;
+    margin: auto 0;
+    width: 9px;
+    height: 17px;
+    background: url("data:image/svg+xml,%3Csvg height='17' viewBox='0 0 9 17' width='9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m2 14 4.5-4.5c.15-.15.15-.4 0-.55l-4.5-4.5' fill='none' stroke='%23999' stroke-linecap='round' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center;
+  }
+
+  .tm-icon {
+    width: 24px;
+    height: 24px;
+    background-color: $accent-color;
+    mask-size: 24px;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    flex-shrink: 0;
+    margin: 0 5px;
+  }
+
+  .tm-row-desc {
+    color: $text-tertiary;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tm-row-close {
+    width: 24px;
+    height: 24px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23f44336'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23f44336' opacity='0.1'/%3E%3Cpath d='M9 9l6 6m0-6l-6 6' stroke='%23f44336' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+    background-size: 24px;
+    margin-right: -12px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .grow-1 {
+    flex-grow: 1;
+  }
+}
+
+// 编辑模式
+.list-prevent-edit {
+  .tm-icon,
+  .tm-row-close {
+    visibility: hidden;
+    margin-left: -37px;
+  }
+
+  .js-sortable {
+    padding: 9px 14px;
+    padding-right: 24px;
+  }
+}
+
+.js-edit-command-list:not(.list-prevent-edit) {
+  .tm-row::after {
+    display: none;
+  }
+
+  .tm-row {
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  .tm-row-add {
+    visibility: hidden;
+    margin-top: -42px;
+  }
+}
+
+// 帮助文本
+.help-text {
+  margin: 8px 14px;
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.4;
+
+  a {
+    color: $accent-color;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 17px;
+      margin-left: 2px;
+      background: url("data:image/svg+xml,%3Csvg height='17' viewBox='0 0 6 17' width='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m 1 6 l 3.5 3.5 c 0.15 0.15 0.15 0.4 0 0.55 l -3.5 3.5' fill='none' stroke='%23000' stroke-linecap='round' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center;
+    }
+  }
+}
+
+// Bot anchor (底部固定的机器人信息)
+.tm-bot-anchor {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 4px 12px 4px 4px;
+  border-radius: 50px;
+  color: $bg-primary;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateX(-50%) scale(1.05);
+    color: $bg-primary;
+  }
+
+  .tr-bot-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .tr-bot-name {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+// 通用辅助类
+.grow-1 {
+  flex-grow: 1;
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .tm-main {
+    width: 100%;
+    padding: 0 12px 12px;
+  }
+
+  .tm-main-intro {
+    padding: 16px 12px;
+  }
+}
+

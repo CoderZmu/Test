@@ -1,0 +1,50 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+// ============================================
+// CreateBot 页面特有样式
+// ============================================
+
+// 页面容器 - 为固定底部按钮预留空间
+.create-bot-container {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 80px; // 为固定按钮预留空间
+}
+
+// 固定在底部的提交按钮
+.fixed-bottom-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: #fff;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  
+  // 安全区域适配（适配 iPhone 刘海屏等）
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+}
+
+// 头像上传交互效果
+.tm-main-intro-picture {
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.user-name-hint {
+  margin-bottom: 16px;
+  padding: 0 6px;
+  font-size: 13px;
+  color: $text-disabled;
+}

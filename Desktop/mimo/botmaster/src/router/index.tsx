@@ -36,6 +36,7 @@ const NotFound: React.FC = () => (
 );
 
 // 创建路由配置
+// basename 从 package.json 的 homepage 自动获取
 const router = createBrowserRouter([
   {
     path: '/',
@@ -75,6 +76,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], {
+  basename: process.env.PUBLIC_URL || '/',
+});
 
 export default router;
